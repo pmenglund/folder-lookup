@@ -6,7 +6,7 @@ jobs:
       - image: circleci/golang:1.12
 
     # directory where steps are run. Path must conform to the Go Workspace requirements
-    working_directory: /go/src/github.com/pmenglund/folder-lookup
+    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
 
     environment:
       GO111MODULE: "on"
