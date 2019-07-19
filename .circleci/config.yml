@@ -1,0 +1,28 @@
+---
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12
+
+    # directory where steps are run. Path must conform to the Go Workspace requirements
+    working_directory: /go/src/github.com/pmenglund/folder-lookup
+
+    environment:
+      GO111MODULE: "on"
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
+
+      - run: go mod download
+
+      - run: go test -v ./...
+
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - "/go/pkg"
